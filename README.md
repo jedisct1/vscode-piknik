@@ -1,0 +1,26 @@
+# Piknik package for Visual Studio Code
+
+Copy/paste anything over the network.
+
+Make a local selection; paste it instantaneously into Atom running on another computer.
+
+## Requirements
+
+[Piknik](https://github.com/jedisct1/piknik) has to be installed and configured on the system.
+The `piknik` executable must be in your `$PATH`.
+
+On macOS, this can be easily achieved using Homebrew:
+```sh
+$ brew install piknik
+```
+
+## Installation
+
+Just install `piknik` package from the Visual Studio Code package manager.
+
+## Usage
+
+* Copy the selection to the shared clipboard: `Ctrl-Alt-Shift C` (or `piknik:copy`)
+* Paste the shared clipboard: `Ctrl-Alt-Shift V` (or `piknik-paste`)
+
+Enjoy.
