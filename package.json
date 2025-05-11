@@ -1,51 +1,62 @@
 {
     "name": "piknik",
-    "displayName": "piknik",
-    "description": "Copy/paste text to/from remote hosts",
-    "version": "0.0.1",
+    "displayName": "Piknik",
+    "description": "Copy/paste text to/from remote hosts using Piknik clipboard",
+    "version": "0.0.2",
     "publisher": "jedisct1",
-      "author": {
-    "name": "Frank Denis"
-  },
+    "author": {
+        "name": "Frank Denis"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/jedisct1/vscode-piknik.git"
     },
+    "license": "MIT",
     "engines": {
-        "vscode": "^1.5.0"
+        "vscode": "^1.74.0"
     },
     "categories": [
         "Other"
     ],
-    "activationEvents": [
-        "onCommand:piknik.copy",
-        "onCommand:piknik.paste"
+    "keywords": [
+        "clipboard",
+        "remote",
+        "share",
+        "network"
     ],
-    "main": "./out/src/piknik",
+    "main": "./out/src/extension.js",
     "contributes": {
-        "commands": [{
-            "command": "piknik.copy",
-            "title": "Copy to the piknik clipboard"
-        }, {
-            "command": "piknik.paste",
-            "title": "Paste from the piknik clipboard"
-        }],
-        "keybindings": [{
-            "mac": "ctrl+alt+shift+c",
-            "win": "ctrl+alt+shift+c",
-            "linux": "ctrl+alt+shift+c",
-            "key": "ctrl+alt+shift+c",
-            "command": "piknik.copy"
-        }, {
-            "mac": "ctrl+alt+shift+v",
-            "win": "ctrl+alt+shift+v",
-            "linux": "ctrl+alt+shift+v",
-            "key": "ctrl+alt+shift+v",
-            "command": "piknik.paste"
-        }],
+        "commands": [
+            {
+                "command": "piknik.copy",
+                "title": "Piknik: Copy to shared clipboard"
+            },
+            {
+                "command": "piknik.paste",
+                "title": "Piknik: Paste from shared clipboard"
+            }
+        ],
+        "keybindings": [
+            {
+                "mac": "ctrl+alt+shift+c",
+                "win": "ctrl+alt+shift+c",
+                "linux": "ctrl+alt+shift+c",
+                "key": "ctrl+alt+shift+c",
+                "command": "piknik.copy",
+                "when": "editorTextFocus"
+            },
+            {
+                "mac": "ctrl+alt+shift+v",
+                "win": "ctrl+alt+shift+v",
+                "linux": "ctrl+alt+shift+v",
+                "key": "ctrl+alt+shift+v",
+                "command": "piknik.paste",
+                "when": "editorTextFocus"
+            }
+        ],
         "configuration": {
             "type": "object",
-            "title": "Piknik configuration",
+            "title": "Piknik",
             "properties": {
                 "piknik.piknikBinPath": {
                     "description": "Path to the piknik executable",
@@ -60,16 +71,23 @@
             }
         }
     },
+    "activationEvents": [],
     "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install"
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
     },
     "devDependencies": {
-        "typescript": "^3.7.2",
-        "vscode": "^1.0.0",
-        "mocha": "^6.2.2",
-        "@types/node": "^13.1.0",
-        "@types/mocha": "^5.2.7"
+        "@types/mocha": "^10.0.1",
+        "@types/node": "^18.15.0",
+        "@types/vscode": "^1.74.0",
+        "@typescript-eslint/eslint-plugin": "^5.62.0",
+        "@typescript-eslint/parser": "^5.62.0",
+        "eslint": "^8.36.0",
+        "glob": "^8.1.0",
+        "mocha": "^10.2.0",
+        "typescript": "^5.0.2"
     }
 }
